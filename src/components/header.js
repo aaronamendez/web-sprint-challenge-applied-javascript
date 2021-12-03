@@ -13,10 +13,10 @@ const Header = (title, date, temp) => {
 	//
 
 	// Creating the elements
-	const header = createElement("div");
-	const dateElement = createElement("span");
-	const head = createElement("h1");
-	const tempElement = createElement("span");
+	const header = document.createElement("div");
+	const dateElement = document.createElement("span");
+	const head = document.createElement("h1");
+	const tempElement = document.createElement("span");
 
 	// Establishing structure of Elements
 	header.appendChild(dateElement);
