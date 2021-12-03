@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const Tabs = (topics) => {
 	// TASK 3
 	// ---------------------
@@ -22,6 +24,12 @@ const Tabs = (topics) => {
 
 	// ForEach on Topics
 	// I need to create the element on each iteration, update the class with "tab", and assign it a textContent of it's own value.
+	topics.forEach((el) => {
+		const div = document.createElement("div");
+		div.classList.add("tab");
+		div.textContent = el;
+		topicsElement.appendChild(div);
+	});
 
 	return topicsElement;
 };
@@ -34,6 +42,16 @@ const tabsAppender = (selector) => {
 	// Find the array of topics inside the response, and create the tabs using the Tabs component.
 	// Append the tabs to the element in the DOM that matches the selector passed to the function.
 	//
+	// const topics = { "topics": ["javascript", "bootstrap", "technology", "jquery", "node.js"] }
+	axios
+		.get("http://localhost:5000/api/topics")
+		.then((res) => {
+			console.log(res.topics);
+			document.querySelector(selector).appendChild(Tabs(res.topics));
+		})
+		.catch((err) => {
+			console.error(err);
+		});
 };
 
 export { Tabs, tabsAppender };
